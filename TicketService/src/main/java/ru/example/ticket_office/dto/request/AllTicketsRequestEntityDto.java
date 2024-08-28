@@ -1,7 +1,8 @@
-package ru.example.ticket_office.dto;
+package ru.example.ticket_office.dto.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.annotation.Nullable;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,14 +27,17 @@ public class AllTicketsRequestEntityDto {
     private LocalDateTime dateTo;
 
     @Nullable
+    @Size(min = 3)
     @Schema(description = "Пункт отправления")
     private String departure;
 
     @Nullable
+    @Size(min = 3)
     @Schema(description = "Пункт назначения")
     public String destination;
 
     @Nullable
+    @Size(min = 3)
     @Schema(description = "Компания - перевозчик")
     private String company;
 

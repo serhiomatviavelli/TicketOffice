@@ -3,8 +3,8 @@ package ru.example.ticket_office.service;
 import jooq.db.tables.records.RouteRecord;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.example.ticket_office.dto.RouteDtoForCreation;
-import ru.example.ticket_office.dto.RouteDtoForEdit;
+import ru.example.ticket_office.dto.request.RouteDtoForCreation;
+import ru.example.ticket_office.dto.request.RouteDtoForEdit;
 import ru.example.ticket_office.repository.RouteRepository;
 
 import java.util.Optional;
@@ -17,8 +17,7 @@ public class RouteService {
 
     public RouteRecord deleteRouteById(Long id) {
         Optional<RouteRecord> route = repository.deleteRouteById(id);
-        return route.isEmpty() ? null
-                : route.get();
+        return route.orElse(null);
     }
 
     public void addRoute(RouteDtoForCreation dto) {
@@ -27,8 +26,7 @@ public class RouteService {
 
     public RouteRecord updateRoute(RouteDtoForEdit dto) {
         Optional<RouteRecord> route = repository.updateRoute(dto);
-        return route.isEmpty() ? null
-                : route.get();
+        return route.orElse(null);
     }
 
 }

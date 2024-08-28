@@ -1,8 +1,10 @@
-package ru.example.ticket_office.dto;
+package ru.example.ticket_office.dto.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,14 +16,17 @@ import lombok.Setter;
 public class ClientForRegistrationDto {
 
     @NotNull
+    @Size(min = 3)
     @Schema(description = "Логин")
     private String login;
 
     @NotNull
+    @Size(min = 4)
     @Schema(description = "Пароль")
     private String password;
 
     @NotNull
+    @Pattern(regexp = "^[a-zA-Zа-яёА-ЯЁ]+\\s[a-zA-Zа-яёА-ЯЁ]+(\\s[a-zA-Zа-яёА-ЯЁ]+)?$")
     @Schema(description = "ФИО клиента")
     private String fullname;
 

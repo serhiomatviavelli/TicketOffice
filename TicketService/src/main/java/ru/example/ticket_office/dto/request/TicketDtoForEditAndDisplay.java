@@ -1,6 +1,8 @@
-package ru.example.ticket_office.dto;
+package ru.example.ticket_office.dto.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -13,8 +15,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Schema(description = "Сущность билета для добавления в БД")
-public class TicketDtoForCreation {
+@ToString
+@Schema(description = "Сущность билета для изменения")
+public class TicketDtoForEditAndDisplay {
+
+    @NotNull
+    @Schema(description = "Идентификатор")
+    private Long id;
 
     @NotNull
     @Schema(description = "Идентификатор маршрута")
@@ -30,6 +37,8 @@ public class TicketDtoForCreation {
     private Short seat;
 
     @NotNull
+    @Min(10)
+    @Max(10000)
     @Schema(description = "Цена")
     private BigDecimal price;
 

@@ -5,7 +5,8 @@ import jooq.db.tables.records.ClientRecord;
 import lombok.AllArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
-import ru.example.ticket_office.dto.ClientForRegistrationDto;
+import org.springframework.transaction.annotation.Transactional;
+import ru.example.ticket_office.dto.request.ClientForRegistrationDto;
 import ru.example.ticket_office.entity.Client;
 
 import java.util.Optional;
@@ -16,6 +17,7 @@ public class ClientRepository {
 
     private final DSLContext context;
 
+    @Transactional
     public Optional<ClientRecord> addClient(ClientForRegistrationDto client) {
         if (findByLogin(client.getLogin()).isPresent()) {
             return Optional.empty();

@@ -6,14 +6,15 @@ import lombok.AllArgsConstructor;
 import org.jooq.Condition;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
-import ru.example.ticket_office.dto.TicketDtoForCreation;
-import ru.example.ticket_office.dto.TicketDtoForEditAndDisplay;
+import org.springframework.transaction.annotation.Transactional;
+import ru.example.ticket_office.dto.request.TicketDtoForCreation;
+import ru.example.ticket_office.dto.request.TicketDtoForEditAndDisplay;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import static org.jooq.impl.DSL.*;
+import static org.jooq.impl.DSL.asterisk;
 
 @Repository
 @AllArgsConstructor
@@ -22,7 +23,7 @@ public class TicketRepository {
     private final DSLContext context;
 
     public List<TicketDtoForEditAndDisplay> getAvailableTickets(LocalDateTime from, LocalDateTime to,
-                                                  String departure, String destination, String company) {
+                                                                String departure, String destination, String company) {
         return context.select(Tables.TICKET.ID, Tables.TICKET.ROUTE, Tables.TICKET.DATETIME,
                         Tables.TICKET.SEAT, Tables.TICKET.PRICE)
                 .from(Tables.TICKET
@@ -39,6 +40,7 @@ public class TicketRepository {
                 .fetchInto(TicketRecord.class);
     }
 
+    @Transactional
     public TicketRecord buyTicket(String login, Long ticketId) {
         return context.update(Tables.TICKET)
                 .set(Tables.TICKET.CLIENT,
@@ -78,8 +80,8 @@ public class TicketRepository {
                 .returning().fetchOptional();
     }
 
-    public Optional<TicketRecord> addTicket(TicketDtoForCreation ticket) {
-        return context.insertInto(Tables.TICKET)
+    public void addTicket(TicketDtoForCreation ticket) {
+        context.insertInto(Tables.TICKET)
                 .set(context.newRecord(Tables.TICKET, ticket))
                 .returning()
                 .fetchOptional();

@@ -7,9 +7,9 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import ru.example.ticket_office.dto.AllTicketsRequestEntityDto;
-import ru.example.ticket_office.dto.TicketDtoForCreation;
-import ru.example.ticket_office.dto.TicketDtoForEditAndDisplay;
+import ru.example.ticket_office.dto.request.AllTicketsRequestEntityDto;
+import ru.example.ticket_office.dto.request.TicketDtoForCreation;
+import ru.example.ticket_office.dto.request.TicketDtoForEditAndDisplay;
 import ru.example.ticket_office.repository.TicketRepository;
 import ru.example.ticket_office.util.Mapper;
 
@@ -60,8 +60,7 @@ public class TicketService {
 
     public TicketRecord deleteTicketById(Long id) {
         Optional<TicketRecord> ticket = ticketRepository.deleteTicketById(id);
-        return ticket.isEmpty() ? null
-                : ticket.get();
+        return ticket.orElse(null);
     }
 
     public void addTicket(TicketDtoForCreation dto) {
@@ -70,8 +69,7 @@ public class TicketService {
 
     public TicketRecord updateTicket(TicketDtoForEditAndDisplay dto) {
         Optional<TicketRecord> ticket = ticketRepository.updateTicket(dto);
-        return ticket.isEmpty() ? null
-                : ticket.get();
+        return ticket.orElse(null);
     }
 
 }

@@ -5,8 +5,8 @@ import jooq.db.tables.records.CompanyRecord;
 import lombok.AllArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
-import ru.example.ticket_office.dto.CompanyDtoForCreation;
-import ru.example.ticket_office.dto.CompanyDtoForEdit;
+import ru.example.ticket_office.dto.request.CompanyDtoForCreation;
+import ru.example.ticket_office.dto.request.CompanyDtoForEdit;
 
 import java.util.Optional;
 

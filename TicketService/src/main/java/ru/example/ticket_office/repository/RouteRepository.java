@@ -5,8 +5,8 @@ import jooq.db.tables.records.RouteRecord;
 import lombok.AllArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
-import ru.example.ticket_office.dto.RouteDtoForCreation;
-import ru.example.ticket_office.dto.RouteDtoForEdit;
+import ru.example.ticket_office.dto.request.RouteDtoForCreation;
+import ru.example.ticket_office.dto.request.RouteDtoForEdit;
 
 import java.util.Optional;
 
@@ -21,8 +21,8 @@ public class RouteRepository {
                 .returning().fetchOptional();
     }
 
-    public Optional<RouteRecord> addRoute(RouteDtoForCreation route) {
-        return context.insertInto(Tables.ROUTE)
+    public void addRoute(RouteDtoForCreation route) {
+        context.insertInto(Tables.ROUTE)
                 .set(context.newRecord(Tables.ROUTE, route))
                 .returning()
                 .fetchOptional();
@@ -37,5 +37,5 @@ public class RouteRepository {
                 .where(Tables.ROUTE.ID.eq(route.getId()))
                 .returning().fetchOptional();
     }
-    
+
 }

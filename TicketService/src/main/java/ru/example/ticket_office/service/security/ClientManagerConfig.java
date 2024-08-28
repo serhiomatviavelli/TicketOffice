@@ -1,4 +1,4 @@
-package ru.example.ticket_office.config;
+package ru.example.ticket_office.service.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +18,7 @@ public class ClientManagerConfig implements UserDetailsService {
         return clientRepository
                 .findByLogin(login)
                 .map(ClientConfig::new)
-                .orElseThrow(()-> new UsernameNotFoundException("Login: "+ login +" does not exist"));
+                .orElseThrow(() -> new UsernameNotFoundException("Login: " + login + " does not exist"));
     }
 
 }
