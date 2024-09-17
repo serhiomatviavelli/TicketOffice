@@ -2,7 +2,7 @@ package ru.example.ticket_office.repository;
 
 import jooq.db.Tables;
 import jooq.db.tables.records.TicketRecord;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.jooq.Condition;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
@@ -12,12 +12,13 @@ import ru.example.ticket_office.dto.request.TicketDtoForEditAndDisplay;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import static org.jooq.impl.DSL.asterisk;
 
 @Repository
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class TicketRepository {
 
     private final DSLContext context;
@@ -42,10 +43,10 @@ public class TicketRepository {
 
     @Transactional
     public TicketRecord buyTicket(String login, Long ticketId) {
+        Long clientId = Objects.requireNonNull(context.select(Tables.CLIENT.ID).from(Tables.CLIENT)
+                .where(Tables.CLIENT.LOGIN.eq(login)).fetchAny()).value1();
         return context.update(Tables.TICKET)
-                .set(Tables.TICKET.CLIENT,
-                        (context.select(Tables.CLIENT.ID).from(Tables.CLIENT)
-                                .where(Tables.CLIENT.LOGIN.eq(login))))
+                .set(Tables.TICKET.CLIENT, clientId)
                 .where(Tables.TICKET.ID.eq(ticketId))
                 .and(Tables.TICKET.CLIENT.isNull())
                 .and(Tables.TICKET.DATETIME.greaterThan(LocalDateTime.now()))
@@ -80,8 +81,8 @@ public class TicketRepository {
                 .returning().fetchOptional();
     }
 
-    public void addTicket(TicketDtoForCreation ticket) {
-        context.insertInto(Tables.TICKET)
+    public Optional<TicketRecord> addTicket(TicketDtoForCreation ticket) {
+        return context.insertInto(Tables.TICKET)
                 .set(context.newRecord(Tables.TICKET, ticket))
                 .returning()
                 .fetchOptional();

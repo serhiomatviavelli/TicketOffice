@@ -37,4 +37,8 @@ public class ClientRepository {
                 .fetchOptionalInto(Client.class);
     }
 
+    public ClientRecord getClientByLogin(String login) {
+        return context.selectFrom(Tables.CLIENT).where(Tables.CLIENT.LOGIN.eq(login)).fetchAny();
+    }
+
 }

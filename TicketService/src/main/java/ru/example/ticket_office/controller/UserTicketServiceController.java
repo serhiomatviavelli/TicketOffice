@@ -69,7 +69,7 @@ public class UserTicketServiceController {
     public ResponseEntity<ResponseDto> buyTicket(@PathVariable(required = true, name = "ticketId") @Parameter(description = "Идентификатор билета")
                                                  Long ticketId,
                                                  Principal principal) {
-        TicketDtoForEditAndDisplay ticket = ticketService.buyNewTicket(principal.getName(), ticketId);
+        TicketDtoForEditAndDisplay ticket = ticketService.sellTicketAndSendKafkaMessage(principal.getName(), ticketId);
         return ticket != null ? ResponseEntity.ok().body(new ResponseDto("Куплен новый билет"))
                 : ResponseEntity.badRequest().body(new ResponseDto("Выбран неверный билет"));
     }

@@ -1,0 +1,17 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: user
+    password: pass
+    driver-class-name: org.postgresql.Driver
+
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: group
+      auto-offset-reset: earliest
+      key-serializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-serializer: org.apache.kafka.common.serialization.StringDeserializer

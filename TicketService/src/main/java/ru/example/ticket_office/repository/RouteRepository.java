@@ -38,4 +38,8 @@ public class RouteRepository {
                 .returning().fetchOptional();
     }
 
+    public RouteRecord getRouteById(Long id) {
+        return context.selectFrom(Tables.ROUTE).where(Tables.ROUTE.ID.eq(id)).fetchAny();
+    }
+
 }
