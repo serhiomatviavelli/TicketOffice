@@ -18,6 +18,14 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <version>3.3.3</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>

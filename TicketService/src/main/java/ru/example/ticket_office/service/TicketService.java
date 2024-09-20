@@ -5,6 +5,9 @@ import jooq.db.tables.records.RouteRecord;
 import jooq.db.tables.records.TicketRecord;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -28,6 +31,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@CacheConfig(cacheNames = "purchased_tickets")
 public class TicketService {
 
     private final TicketRepository ticketRepository;
@@ -54,6 +58,7 @@ public class TicketService {
         }
     }
 
+    @Cacheable(value = "tickets", key = "#login")
     public List<TicketDtoForEditAndDisplay> getClientsTickets(String login) {
         List<TicketRecord> records = ticketRepository.getClientsTickets(login);
         return records.stream().map(mapper::ticketRecordToDto).filter(Objects::nonNull).collect(Collectors.toList());
@@ -84,6 +89,7 @@ public class TicketService {
         return ticket.orElse(null);
     }
 
+    @CacheEvict(cacheNames = "tickets", key = "#login")
     public TicketDtoForEditAndDisplay sellTicketAndSendKafkaMessage(String login, Long ticketId) {
         TicketDtoForEditAndDisplay ticket = buyNewTicket(login, ticketId);
         if (ticket != null) {

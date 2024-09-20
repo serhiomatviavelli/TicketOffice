@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 @Builder
 @ToString
 @Schema(description = "Сущность билета для изменения")
-public class TicketDtoForEditAndDisplay {
+public class TicketDtoForEditAndDisplay implements Serializable {
 
     @NotNull
     @Schema(description = "Идентификатор")
