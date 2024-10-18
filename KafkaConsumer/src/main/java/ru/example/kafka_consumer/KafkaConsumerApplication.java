@@ -1,4 +1,4 @@
-package ru.example.ticket_office;
+package ru.example.kafka_consumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

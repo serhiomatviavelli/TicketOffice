@@ -1,10 +1,10 @@
-package ru.example.ticket_office.kafka;
+package ru.example.kafka_consumer.kafka;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
-import ru.example.ticket_office.service.TicketService;
+import ru.example.kafka_consumer.service.TicketService;
 
 @Slf4j
 @Service

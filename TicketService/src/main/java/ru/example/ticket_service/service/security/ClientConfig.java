@@ -1,10 +1,10 @@
-package ru.example.ticket_office.service.security;
+package ru.example.ticket_service.service.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.example.ticket_office.entity.Client;
+import ru.example.ticket_service.entity.Client;
 
 import java.util.Arrays;
 import java.util.Collection;

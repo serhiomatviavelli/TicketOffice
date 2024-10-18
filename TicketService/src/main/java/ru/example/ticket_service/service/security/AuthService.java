@@ -32,8 +32,9 @@ public class AuthService {
         try {
             Client client = clientRepository.findByLogin(authentication.getName())
                     .orElseThrow(() -> {
-                        log.error("[AuthService:userSignInAuth] User :{} not found",authentication.getName());
-                        return new ResponseStatusException(HttpStatus.NOT_FOUND,"USER NOT FOUND ");});
+                        log.error("[AuthService:userSignInAuth] User :{} not found", authentication.getName());
+                        return new ResponseStatusException(HttpStatus.NOT_FOUND, "USER NOT FOUND ");
+                    });
 
 
             String accessToken = jwtTokenGenerator.generateAccessToken(authentication);
@@ -44,7 +45,7 @@ public class AuthService {
             creatRefreshTokenCookie(response, refreshToken);
 
             log.info("[AuthService:userSignInAuth] Access token for user:{}, has been generated", client.getLogin());
-            return  AuthResponseDto.builder()
+            return AuthResponseDto.builder()
                     .accessToken(accessToken)
                     .accessTokenExpiry(15 * 60)
                     .userName(client.getLogin())
@@ -54,7 +55,7 @@ public class AuthService {
 
         } catch (Exception e) {
             log.error("[AuthService:userSignInAuth]Exception while authenticating the user due to :{}", e.getMessage());
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"Please Try Again");
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Please Try Again");
         }
     }
 
@@ -63,16 +64,16 @@ public class AuthService {
     }
 
     private Cookie creatRefreshTokenCookie(HttpServletResponse response, String refreshToken) {
-        Cookie refreshTokenCookie = new Cookie("refresh_token",refreshToken);
+        Cookie refreshTokenCookie = new Cookie("refresh_token", refreshToken);
         refreshTokenCookie.setHttpOnly(true);
         refreshTokenCookie.setSecure(true);
-        refreshTokenCookie.setMaxAge(15 * 24 * 60 * 60 ); // in seconds
+        refreshTokenCookie.setMaxAge(15 * 24 * 60 * 60); // in seconds
         response.addCookie(refreshTokenCookie);
         return refreshTokenCookie;
     }
 
     public Object getAccessTokenUsingRefreshToken(String authorizationHeader) {
-        if (!authorizationHeader.startsWith(TokenType.BEARER.getAlias())){
+        if (!authorizationHeader.startsWith(TokenType.BEARER.getAlias())) {
             return new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Please verify your token type");
         }
 
@@ -80,16 +81,16 @@ public class AuthService {
 
         var refreshTokenEntity = refreshTokenRepository.findByToken(refreshToken)
                 .filter(tokens -> !tokens.getRevoked())
-                .orElseThrow(()-> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Refresh token revoked"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Refresh token revoked"));
 
         Long clientId = refreshTokenEntity.getClient();
         Client client = clientRepository.findById(clientId).orElseThrow(() -> new RuntimeException(String.format("Couldn't find user with id %d", clientId)));
 
-        Authentication authentication =  createAuthenticationObject(client);
+        Authentication authentication = createAuthenticationObject(client);
 
         String accessToken = jwtTokenGenerator.generateAccessToken(authentication);
 
-        return  AuthResponseDto.builder()
+        return AuthResponseDto.builder()
                 .accessToken(accessToken)
                 .accessTokenExpiry(5 * 60)
                 .userName(client.getLogin())

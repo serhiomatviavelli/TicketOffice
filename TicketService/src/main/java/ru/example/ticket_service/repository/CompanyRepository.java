@@ -1,12 +1,12 @@
-package ru.example.ticket_office.repository;
+package ru.example.ticket_service.repository;
 
 import jooq.db.Tables;
 import jooq.db.tables.records.CompanyRecord;
 import lombok.AllArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
-import ru.example.ticket_office.dto.request.CompanyDtoForCreation;
-import ru.example.ticket_office.dto.request.CompanyDtoForEdit;
+import ru.example.ticket_service.dto.request.CompanyDtoForCreation;
+import ru.example.ticket_service.dto.request.CompanyDtoForEdit;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package ru.example.ticket_office.controller;
+package ru.example.ticket_service.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -11,11 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import ru.example.ticket_office.dto.request.AllTicketsRequestEntityDto;
-import ru.example.ticket_office.dto.request.TicketDtoForEditAndDisplay;
-import ru.example.ticket_office.dto.response.ResponseDto;
-import ru.example.ticket_office.service.TicketService;
-import ru.example.ticket_office.util.ErrorsHandler;
+import ru.example.ticket_service.dto.request.AllTicketsRequestEntityDto;
+import ru.example.ticket_service.dto.request.TicketDtoForEditAndDisplay;
+import ru.example.ticket_service.dto.response.ResponseDto;
+import ru.example.ticket_service.service.TicketService;
+import ru.example.ticket_service.util.ErrorsHandler;
 
 import java.security.Principal;
 import java.util.List;
@@ -28,7 +28,6 @@ public class UserTicketServiceController {
 
     private final TicketService ticketService;
 
-//    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     @PreAuthorize("hasAuthority('SCOPE_READ')")
     @GetMapping("/tickets")
     @Operation(
@@ -50,7 +49,6 @@ public class UserTicketServiceController {
         }
     }
 
-//    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     @PreAuthorize("hasAuthority('SCOPE_READ')")
     @GetMapping("/tickets/mine")
     @Operation(
@@ -62,7 +60,6 @@ public class UserTicketServiceController {
         return ResponseEntity.ok().body(new ResponseDto("Мои билеты: " + tickets.toString()));
     }
 
-//    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     @PreAuthorize("hasAuthority('SCOPE_WRITE')")
     @PutMapping("/tickets/buy/{ticketId}")
     @Operation(

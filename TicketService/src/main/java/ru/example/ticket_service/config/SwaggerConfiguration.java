@@ -1,4 +1,4 @@
-package ru.example.ticket_office.config;
+package ru.example.ticket_service.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;

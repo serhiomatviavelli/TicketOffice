@@ -1,4 +1,4 @@
-package ru.example.ticket_office.repository;
+package ru.example.ticket_service.repository;
 
 import jooq.db.Tables;
 import jooq.db.tables.records.TicketRecord;
@@ -7,8 +7,8 @@ import org.jooq.Condition;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import ru.example.ticket_office.dto.request.TicketDtoForCreation;
-import ru.example.ticket_office.dto.request.TicketDtoForEditAndDisplay;
+import ru.example.ticket_service.dto.request.TicketDtoForCreation;
+import ru.example.ticket_service.dto.request.TicketDtoForEditAndDisplay;
 
 import java.time.LocalDateTime;
 import java.util.List;

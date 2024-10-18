@@ -1,10 +1,10 @@
-package ru.example.ticket_office.repository;
+package ru.example.kafka_consumer.repository;
 
 import jooq.db.Tables;
 import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
-import ru.example.ticket_office.entity.Ticket;
+import ru.example.kafka_consumer.entity.Ticket;
 
 @Repository
 @RequiredArgsConstructor

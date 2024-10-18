@@ -1,9 +1,9 @@
-package ru.example.ticket_office.util;
+package ru.example.ticket_service.util;
 
 import jooq.db.tables.records.TicketRecord;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.example.ticket_office.dto.request.TicketDtoForEditAndDisplay;
+import ru.example.ticket_service.dto.request.TicketDtoForEditAndDisplay;
 
 @Component
 @RequiredArgsConstructor

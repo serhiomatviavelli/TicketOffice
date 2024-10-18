@@ -1,4 +1,4 @@
-package ru.example.ticket_office.service;
+package ru.example.kafka_consumer.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,8 +6,8 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.example.ticket_office.entity.Ticket;
-import ru.example.ticket_office.repository.TicketRepository;
+import ru.example.kafka_consumer.entity.Ticket;
+import ru.example.kafka_consumer.repository.TicketRepository;
 
 @Service
 @Slf4j

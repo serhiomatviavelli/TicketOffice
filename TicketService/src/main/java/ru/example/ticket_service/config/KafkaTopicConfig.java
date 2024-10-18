@@ -1,4 +1,4 @@
-package ru.example.ticket_office.config;
+package ru.example.ticket_service.config;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;

@@ -1,12 +1,12 @@
-package ru.example.ticket_office.repository;
+package ru.example.ticket_service.repository;
 
 import jooq.db.Tables;
 import jooq.db.tables.records.RouteRecord;
 import lombok.AllArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
-import ru.example.ticket_office.dto.request.RouteDtoForCreation;
-import ru.example.ticket_office.dto.request.RouteDtoForEdit;
+import ru.example.ticket_service.dto.request.RouteDtoForCreation;
+import ru.example.ticket_service.dto.request.RouteDtoForEdit;
 
 import java.util.Optional;
 

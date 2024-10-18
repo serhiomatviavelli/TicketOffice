@@ -1,11 +1,11 @@
-package ru.example.ticket_office.service;
+package ru.example.ticket_service.service;
 
 import jooq.db.tables.records.ClientRecord;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.example.ticket_office.dto.request.ClientForRegistrationDto;
-import ru.example.ticket_office.repository.ClientRepository;
+import ru.example.ticket_service.dto.request.ClientForRegistrationDto;
+import ru.example.ticket_service.repository.ClientRepository;
 
 import java.util.Optional;
 

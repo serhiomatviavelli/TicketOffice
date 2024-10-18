@@ -1,4 +1,4 @@
-package ru.example.ticket_office.repository;
+package ru.example.ticket_service.repository;
 
 import jooq.db.Tables;
 import jooq.db.tables.records.ClientRecord;
@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import ru.example.ticket_office.dto.request.ClientForRegistrationDto;
-import ru.example.ticket_office.entity.Client;
+import ru.example.ticket_service.dto.request.ClientForRegistrationDto;
+import ru.example.ticket_service.entity.Client;
 
 import java.util.Optional;
 

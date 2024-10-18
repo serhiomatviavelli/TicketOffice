@@ -1,4 +1,4 @@
-package ru.example.ticket_office.dto.response;
+package ru.example.ticket_service.dto.response;
 
 import lombok.Getter;
 import lombok.Setter;

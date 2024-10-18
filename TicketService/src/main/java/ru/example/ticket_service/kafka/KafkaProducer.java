@@ -1,4 +1,4 @@
-package ru.example.ticket_office.kafka;
+package ru.example.ticket_service.kafka;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

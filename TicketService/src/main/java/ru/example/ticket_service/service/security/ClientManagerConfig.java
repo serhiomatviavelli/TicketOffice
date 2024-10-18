@@ -1,11 +1,11 @@
-package ru.example.ticket_office.service.security;
+package ru.example.ticket_service.service.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.example.ticket_office.repository.ClientRepository;
+import ru.example.ticket_service.repository.ClientRepository;
 
 @Service
 @RequiredArgsConstructor

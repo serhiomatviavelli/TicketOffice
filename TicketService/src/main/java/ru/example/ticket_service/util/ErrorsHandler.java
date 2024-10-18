@@ -1,9 +1,9 @@
-package ru.example.ticket_office.util;
+package ru.example.ticket_service.util;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
-import ru.example.ticket_office.dto.response.ResponseDto;
+import ru.example.ticket_service.dto.response.ResponseDto;
 
 import java.util.List;
 

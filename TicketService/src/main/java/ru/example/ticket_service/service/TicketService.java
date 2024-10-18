@@ -1,4 +1,4 @@
-package ru.example.ticket_office.service;
+package ru.example.ticket_service.service;
 
 import jooq.db.tables.records.ClientRecord;
 import jooq.db.tables.records.RouteRecord;
@@ -13,14 +13,14 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import ru.example.ticket_office.dto.request.AllTicketsRequestEntityDto;
-import ru.example.ticket_office.dto.request.TicketDtoForCreation;
-import ru.example.ticket_office.dto.request.TicketDtoForEditAndDisplay;
-import ru.example.ticket_office.kafka.KafkaProducer;
-import ru.example.ticket_office.repository.ClientRepository;
-import ru.example.ticket_office.repository.RouteRepository;
-import ru.example.ticket_office.repository.TicketRepository;
-import ru.example.ticket_office.util.Mapper;
+import ru.example.ticket_service.dto.request.AllTicketsRequestEntityDto;
+import ru.example.ticket_service.dto.request.TicketDtoForCreation;
+import ru.example.ticket_service.dto.request.TicketDtoForEditAndDisplay;
+import ru.example.ticket_service.kafka.KafkaProducer;
+import ru.example.ticket_service.repository.ClientRepository;
+import ru.example.ticket_service.repository.RouteRepository;
+import ru.example.ticket_service.repository.TicketRepository;
+import ru.example.ticket_service.util.Mapper;
 
 import java.util.ArrayList;
 import java.util.List;

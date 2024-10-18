@@ -1,4 +1,4 @@
-package ru.example.ticket_office.entity;
+package ru.example.kafka_consumer.entity;
 
 import lombok.*;
 

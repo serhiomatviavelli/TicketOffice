@@ -25,4 +25,10 @@ company bigint,
 duration int
 )
 
+create table refresh_token(id bigserial primary key,
+token varchar,
+revoked boolean,
+client bigserial
+)
+
 
