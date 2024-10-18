@@ -26,7 +26,8 @@ public class AdminTicketServiceController {
     private final CompanyService companyService;
     private final RouteService routeService;
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('SCOPE_WRITE')")
     @PostMapping("tickets")
     @Operation(
             summary = "Создание билета",
@@ -42,7 +43,8 @@ public class AdminTicketServiceController {
         }
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('SCOPE_WRITE')")
     @PutMapping("tickets")
     @Operation(
             summary = "Изменение билета",
@@ -59,7 +61,8 @@ public class AdminTicketServiceController {
         }
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('SCOPE_DELETE')")
     @DeleteMapping("tickets/{id}")
     @Operation(
             summary = "Удаление билета",
@@ -72,7 +75,8 @@ public class AdminTicketServiceController {
                 : ResponseEntity.ok().body(new ResponseDto("Билет успешно удален"));
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('SCOPE_WRITE')")
     @PostMapping("routes")
     @Operation(
             summary = "Создание маршрута",
@@ -88,7 +92,8 @@ public class AdminTicketServiceController {
         }
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('SCOPE_WRITE')")
     @PutMapping("routes")
     @Operation(
             summary = "Изменение маршрута",
@@ -105,7 +110,8 @@ public class AdminTicketServiceController {
         }
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('SCOPE_DELETE')")
     @DeleteMapping("routes/{id}")
     @Operation(
             summary = "Удаление маршрута",
@@ -118,7 +124,8 @@ public class AdminTicketServiceController {
                 : ResponseEntity.ok().body(new ResponseDto("Маршрут успешно удален"));
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('SCOPE_WRITE')")
     @PostMapping("companies")
     @Operation(
             summary = "Создание компании",
@@ -134,7 +141,8 @@ public class AdminTicketServiceController {
         }
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('SCOPE_WRITE')")
     @PutMapping("companies")
     @Operation(
             summary = "Изменение компании",
@@ -150,7 +158,8 @@ public class AdminTicketServiceController {
         }
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('SCOPE_DELETE')")
     @DeleteMapping("companies/{id}")
     @Operation(
             summary = "Удаление компании",

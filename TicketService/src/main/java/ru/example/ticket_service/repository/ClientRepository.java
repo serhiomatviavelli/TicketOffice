@@ -41,4 +41,8 @@ public class ClientRepository {
         return context.selectFrom(Tables.CLIENT).where(Tables.CLIENT.LOGIN.eq(login)).fetchAny();
     }
 
+    public Optional<Client> findById(Long clientId) {
+        return context.selectFrom(Tables.CLIENT).where(Tables.CLIENT.ID.eq(clientId))
+                .fetchOptionalInto(Client.class);
+    }
 }

@@ -28,7 +28,8 @@ public class UserTicketServiceController {
 
     private final TicketService ticketService;
 
-    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+//    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('SCOPE_READ')")
     @GetMapping("/tickets")
     @Operation(
             summary = "Просмотр билетов",
@@ -49,7 +50,8 @@ public class UserTicketServiceController {
         }
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+//    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('SCOPE_READ')")
     @GetMapping("/tickets/mine")
     @Operation(
             summary = "Билеты пользователя",
@@ -60,7 +62,8 @@ public class UserTicketServiceController {
         return ResponseEntity.ok().body(new ResponseDto("Мои билеты: " + tickets.toString()));
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+//    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('SCOPE_WRITE')")
     @PutMapping("/tickets/buy/{ticketId}")
     @Operation(
             summary = "Покупка билета",
